@@ -13,7 +13,12 @@
 </style>
 </head>
 <body>
-<iframe src="https://script.google.com/macros/s/AKfycbw3NJyZIf1HdXFpXMoiXa_O-_E46PkZKjKyMwoHQxeRx5yAgZHI4DJdc1l7YFbjuhQy/exec"></iframe>
+<iframe id="app"></iframe>
+<script>
+  var BASE = "https://script.google.com/macros/s/AKfycbw3NJyZIf1HdXFpXMoiXa_O-_E46PkZKjKyMwoHQxeRx5yAgZHI4DJdc1l7YFbjuhQy/exec";
+  var q = new URLSearchParams(location.search).get("q") || "";
+  document.getElementById("app").src = q ? (BASE + "?q=" + encodeURIComponent(q)) : BASE;
+</script>
 <script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js');
