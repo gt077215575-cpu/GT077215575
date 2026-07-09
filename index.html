@@ -8,21 +8,35 @@
 <meta name="theme-color" content="#1976d2">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
-  html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-  iframe { width: 100%; height: 100%; border: none; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #1976d2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, "Microsoft JhengHei", sans-serif;
+    color: #fff;
+  }
+  .loading { text-align: center; font-size: 14px; opacity: .9; }
 </style>
 </head>
 <body>
-<iframe id="app"></iframe>
+<div class="loading">載入中…</div>
+
 <script>
   var BASE = "https://script.google.com/macros/s/AKfycbw3NJyZIf1HdXFpXMoiXa_O-_E46PkZKjKyMwoHQxeRx5yAgZHI4DJdc1l7YFbjuhQy/exec";
   var q = new URLSearchParams(location.search).get("q") || "";
-  document.getElementById("app").src = q ? (BASE + "?q=" + encodeURIComponent(q)) : BASE;
+  var target = q ? (BASE + "?q=" + encodeURIComponent(q)) : BASE;
+
+  location.replace(target);
 </script>
+
 <script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
 </script>
 </body>
 </html>
